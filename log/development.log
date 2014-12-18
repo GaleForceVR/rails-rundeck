@@ -16,3 +16,1196 @@ Started GET "/" for 127.0.0.1 at 2014-12-18 11:03:58 -0600
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/galevanrossem/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
 Completed 200 OK in 17ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.1ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (6.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_hash" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 20:34:23.262034"], ["email", "taya@botsfordroberts.info"], ["first_name", "Johnathan"], ["last_name", "Rolfson"], ["password_digest", "$2a$10$zzX.aETYmWFzXioKoNEZlu7tQDZ4dMNF0wm03kIoDJ7i5xD.AhJLm"], ["updated_at", "2014-12-18 20:34:23.262034"], ["username", "elnora"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 20:34:23.334374"], ["email", "robert@osinski.org"], ["first_name", "Amelie"], ["last_name", "Kautzer"], ["password_digest", "$2a$10$Zoxl9FKMbre2JCPmB9BBqu/tXo6ixfpbctclkMo67upm0HBX9XEW2"], ["updated_at", "2014-12-18 20:34:23.334374"], ["username", "amparo_olson"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 20:34:23.401250"], ["email", "aaliyah_larson@swaniawski.com"], ["first_name", "Jaden"], ["last_name", "Labadie"], ["password_digest", "$2a$10$MEK5RTN4BSmJNmpZ8nUo8OwepDQplHilNqmAf.aJcV04Md3AVqUte"], ["updated_at", "2014-12-18 20:34:23.401250"], ["username", "berneice"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 20:34:23.461805"], ["email", "beth_gibson@dubuque.org"], ["first_name", "Randy"], ["last_name", "Schaefer"], ["password_digest", "$2a$10$bjutD1cjnGdtk3WTAy1xoeaOcCx2ciBX2WtCWn3GvsQSPaRNsMuLi"], ["updated_at", "2014-12-18 20:34:23.461805"], ["username", "cielo"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 20:34:23.521935"], ["email", "maxine@littel.com"], ["first_name", "Viola"], ["last_name", "Thiel"], ["password_digest", "$2a$10$/yNLtAihlFdFruF/txDzee.PkL3fI724t2HlCwf5guYMrFu5dgnfS"], ["updated_at", "2014-12-18 20:34:23.521935"], ["username", "elmore"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 20:34:23.582003"], ["email", "marlen_terry@wisoky.name"], ["first_name", "Irving"], ["last_name", "Bergstrom"], ["password_digest", "$2a$10$GNTOvQHQpeBqMBFg0kxAJOFhCpM/In5FgSOqka7bjzJmAS3s7a39a"], ["updated_at", "2014-12-18 20:34:23.582003"], ["username", "nadia"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 20:34:23.644127"], ["email", "nathanael.kshlerin@senger.info"], ["first_name", "Armani"], ["last_name", "Kling"], ["password_digest", "$2a$10$claZWjM8vYMrQYJ4Q2tqD.5Ns98b7JCskF4sW5gubo/nsZctKXQEa"], ["updated_at", "2014-12-18 20:34:23.644127"], ["username", "litzy.douglas"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 20:34:23.705534"], ["email", "gayle_kunde@wymandickinson.com"], ["first_name", "Elvera"], ["last_name", "Lehner"], ["password_digest", "$2a$10$axKghxgVrXKPIKG1JTZ74OwY6Xsx0/RcsQbB0942l130ZIKch8E0e"], ["updated_at", "2014-12-18 20:34:23.705534"], ["username", "scarlett"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 20:34:23.766927"], ["email", "lucile_goldner@mannmcdermott.info"], ["first_name", "Tobin"], ["last_name", "Green"], ["password_digest", "$2a$10$G2B2uk.cLKjKRxQabbJMHOJdP9VE5FVFEpkua2QILcdo41l.QlSWa"], ["updated_at", "2014-12-18 20:34:23.766927"], ["username", "dangelo"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 20:34:23.831148"], ["email", "brennan@larsondeckow.com"], ["first_name", "Clarissa"], ["last_name", "Cummerata"], ["password_digest", "$2a$10$NyEHoU/4fjmOw7x2tSIfhuLZ/HhyJ.1UrONCMTh.PaXeL47/y4kPi"], ["updated_at", "2014-12-18 20:34:23.831148"], ["username", "jayce_mraz"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36m (7.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (6.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (3.1ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:22.629673"], ["email", "nia_oconner@wisokytreutel.info"], ["first_name", "Reece"], ["last_name", "Rau"], ["password_digest", "$2a$10$wN77aZNRIDEDp42OBIoza.B5rb57ajE96jZiBUYAIWpIdHv5owPdS"], ["updated_at", "2014-12-18 21:08:22.629673"], ["username", "melia_dicki"]]
+  [1m[35m (7.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:22.698911"], ["email", "felicity@sporer.net"], ["first_name", "Jeffry"], ["last_name", "Lueilwitz"], ["password_digest", "$2a$10$cIvhQF1HQgTwqyz6auvenOwcWFFjDPa2hOnHBW7fRyupeUt4bwfjy"], ["updated_at", "2014-12-18 21:08:22.698911"], ["username", "dejah"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:22.759391"], ["email", "lilian@carterschmeler.net"], ["first_name", "Candice"], ["last_name", "Wuckert"], ["password_digest", "$2a$10$c/PRp5Hn8TDFzd265ZKQt.ziyTAh1gNQ71VfX4D43Wr81xe6X4ahG"], ["updated_at", "2014-12-18 21:08:22.759391"], ["username", "elisabeth.thiel"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:22.820625"], ["email", "cordie_mertz@rogahn.com"], ["first_name", "Verner"], ["last_name", "Lesch"], ["password_digest", "$2a$10$lX3.24Svasj3JA0zQ/DFYeyFbTRQWunUvLRQmW2jq9NW7hhb4G.we"], ["updated_at", "2014-12-18 21:08:22.820625"], ["username", "olaf.heller"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:22.882119"], ["email", "wade_runolfsdottir@oberbrunner.net"], ["first_name", "Angus"], ["last_name", "Gottlieb"], ["password_digest", "$2a$10$53s1EhueD3lnsmiJk96US.yQRopZvAmR2quyNP.MgYSJAStDsmJ6a"], ["updated_at", "2014-12-18 21:08:22.882119"], ["username", "kenton.stroman"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:22.946000"], ["email", "everette@goodwin.net"], ["first_name", "Olga"], ["last_name", "Schuster"], ["password_digest", "$2a$10$sN.RvgBxWo.kuYFTclw4curksBmC4yJGC17lvki0qsPPrG7tSYxye"], ["updated_at", "2014-12-18 21:08:22.946000"], ["username", "aiden_nitzsche"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.009299"], ["email", "idella.romaguera@schmittkiehn.biz"], ["first_name", "Eliane"], ["last_name", "Altenwerth"], ["password_digest", "$2a$10$Bfavq5klTJo7HFGnoc8Jp.z8FTaZgqNRgqOEGGim6QnbY.Qbnz19e"], ["updated_at", "2014-12-18 21:08:23.009299"], ["username", "abdiel"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.071395"], ["email", "ericka@aufderhar.biz"], ["first_name", "Maud"], ["last_name", "Hagenes"], ["password_digest", "$2a$10$k1ADhEsM.jRS.GIbNbx1YOofkIj4P66LLSkrAqBmN4FixRgV4p/rG"], ["updated_at", "2014-12-18 21:08:23.071395"], ["username", "natalie.green"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.132478"], ["email", "linda_funk@marks.net"], ["first_name", "Mossie"], ["last_name", "Shields"], ["password_digest", "$2a$10$VYu1CmmZlJZ2BAq4dKbRUOEOpPy0O6VYJ0e3yBcQYBfxs63SNA/Ua"], ["updated_at", "2014-12-18 21:08:23.132478"], ["username", "dedrick"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.196868"], ["email", "hallie.stiedemann@fadel.name"], ["first_name", "Paige"], ["last_name", "Nitzsche"], ["password_digest", "$2a$10$oFAB3lnA4jCpGR6dZ0qLBuGp1QpWwRAUPKs3Uvs5IaHhNIYOQR8Oa"], ["updated_at", "2014-12-18 21:08:23.196868"], ["username", "deontae"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.205020"], ["distance", 691], ["location", "Konopelski Parkway"], ["updated_at", "2014-12-18 21:08:23.205020"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.206996"], ["distance", 877], ["location", "Shania Radial"], ["updated_at", "2014-12-18 21:08:23.206996"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.208574"], ["distance", 381], ["location", "Rosemary Stream"], ["updated_at", "2014-12-18 21:08:23.208574"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.210087"], ["distance", 620], ["location", "Stanton Court"], ["updated_at", "2014-12-18 21:08:23.210087"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.211547"], ["distance", 613], ["location", "Maurice Via"], ["updated_at", "2014-12-18 21:08:23.211547"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.213086"], ["distance", 285], ["location", "Sporer Mission"], ["updated_at", "2014-12-18 21:08:23.213086"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.214583"], ["distance", 143], ["location", "Kovacek Flats"], ["updated_at", "2014-12-18 21:08:23.214583"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.216345"], ["distance", 232], ["location", "Sadie Row"], ["updated_at", "2014-12-18 21:08:23.216345"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.218017"], ["distance", 742], ["location", "Quitzon Spring"], ["updated_at", "2014-12-18 21:08:23.218017"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.219742"], ["distance", 932], ["location", "Hudson Pike"], ["updated_at", "2014-12-18 21:08:23.219742"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.221245"], ["distance", 532], ["location", "Kiehn Court"], ["updated_at", "2014-12-18 21:08:23.221245"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.222741"], ["distance", 793], ["location", "Jenkins Shoals"], ["updated_at", "2014-12-18 21:08:23.222741"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.224243"], ["distance", 834], ["location", "Kathryn Crest"], ["updated_at", "2014-12-18 21:08:23.224243"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.225760"], ["distance", 331], ["location", "Sophia Unions"], ["updated_at", "2014-12-18 21:08:23.225760"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.227312"], ["distance", 983], ["location", "Shanelle View"], ["updated_at", "2014-12-18 21:08:23.227312"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.229140"], ["distance", 184], ["location", "Christophe Branch"], ["updated_at", "2014-12-18 21:08:23.229140"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.236186"], ["distance", 531], ["location", "Jaren Locks"], ["updated_at", "2014-12-18 21:08:23.236186"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.238199"], ["distance", 830], ["location", "Maybell Park"], ["updated_at", "2014-12-18 21:08:23.238199"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.239914"], ["distance", 455], ["location", "Koch Corners"], ["updated_at", "2014-12-18 21:08:23.239914"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.241389"], ["distance", 529], ["location", "Rath Springs"], ["updated_at", "2014-12-18 21:08:23.241389"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.242886"], ["distance", 169], ["location", "Vada Lodge"], ["updated_at", "2014-12-18 21:08:23.242886"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.244591"], ["distance", 766], ["location", "Nolan Groves"], ["updated_at", "2014-12-18 21:08:23.244591"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.246279"], ["distance", 366], ["location", "Schowalter Mills"], ["updated_at", "2014-12-18 21:08:23.246279"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.247710"], ["distance", 621], ["location", "Simonis Square"], ["updated_at", "2014-12-18 21:08:23.247710"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.249084"], ["distance", 737], ["location", "Kaycee Prairie"], ["updated_at", "2014-12-18 21:08:23.249084"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.250910"], ["distance", 157], ["location", "Juvenal Freeway"], ["updated_at", "2014-12-18 21:08:23.250910"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.252859"], ["distance", 526], ["location", "Deckow Centers"], ["updated_at", "2014-12-18 21:08:23.252859"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.254468"], ["distance", 481], ["location", "Osinski Light"], ["updated_at", "2014-12-18 21:08:23.254468"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:08:23.256063"], ["distance", 777], ["location", "Koepp Stravenue"], ["updated_at", "2014-12-18 21:08:23.256063"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:08:23.257720"], ["distance", 188], ["location", "Skiles Shore"], ["updated_at", "2014-12-18 21:08:23.257720"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141218195951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218195951"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateEfforts (20141218200204)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200204"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateSplits (20141218200259)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200259"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateRoutes (20141218200331)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141218200331"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE "efforts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "route_id" integer, "total_time" integer, "total_distance" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (29.9ms)[0m  CREATE TABLE "routes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "distance" integer, "location" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "splits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "effort_id" integer, "distance" integer, "time" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200331')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218195951')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141218200204')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141218200259')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.177832"], ["email", "don.kozey@yost.name"], ["first_name", "Jed"], ["last_name", "Bradtke"], ["password_digest", "$2a$10$ZWo5Ko3tZt3oloRwzVZKXOG5i0eiEBvNb9q5DDSiIyja05gUDaD8e"], ["updated_at", "2014-12-18 21:09:31.177832"], ["username", "claria_wyman"]]
+  [1m[35m (6.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.246696"], ["email", "florence_zulauf@rohan.com"], ["first_name", "Wilson"], ["last_name", "Moen"], ["password_digest", "$2a$10$LuY7MfbIoTqwusI2.Gh/WesXQYsE0NbiPgpbN0rnaIM3WwUhx5ieC"], ["updated_at", "2014-12-18 21:09:31.246696"], ["username", "syble"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.306468"], ["email", "jayne@skiles.name"], ["first_name", "Marilie"], ["last_name", "Goldner"], ["password_digest", "$2a$10$13klXMZdXImXQAbykBsyyu0QKQn3NFK9Zs1KvFgDc7NesWjYnamzK"], ["updated_at", "2014-12-18 21:09:31.306468"], ["username", "rubie.kuvalis"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.367516"], ["email", "milton@ritchie.name"], ["first_name", "Gillian"], ["last_name", "Welch"], ["password_digest", "$2a$10$oQDGakU7XAyJHgJonMLkDe0h3bo0XQdsSenJoqCzvKG4BkWlf1CPO"], ["updated_at", "2014-12-18 21:09:31.367516"], ["username", "roy"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.427941"], ["email", "mac.gleason@johnson.com"], ["first_name", "Jed"], ["last_name", "Cronin"], ["password_digest", "$2a$10$LuX18b/BCh3fcF9rtInVXeS016W5uPNk5Dy37fBurPb75h3HZBCA6"], ["updated_at", "2014-12-18 21:09:31.427941"], ["username", "juvenal.kozey"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.488219"], ["email", "earl_pouros@lindwitting.info"], ["first_name", "Pauline"], ["last_name", "Connelly"], ["password_digest", "$2a$10$Hevg7md7khqmyrDutjQwuOE0MsL4mm095n42gse4fOGcZd3J6F1CK"], ["updated_at", "2014-12-18 21:09:31.488219"], ["username", "stephan"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.548574"], ["email", "everett_bednar@oconnellwitting.org"], ["first_name", "Christiana"], ["last_name", "Weimann"], ["password_digest", "$2a$10$vIkhHjPUSpP8SpBdmirfUekUzaBBlvpFZf86cro7SR1bNBK0NO4.u"], ["updated_at", "2014-12-18 21:09:31.548574"], ["username", "kaylin_satterfield"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.610486"], ["email", "ransom@cainwisozk.org"], ["first_name", "Avery"], ["last_name", "Gaylord"], ["password_digest", "$2a$10$KzRgk5zpUjBB0n0lNJHpvOYilY6Llqh1vA0liOMTFNPaOsRnbIyvu"], ["updated_at", "2014-12-18 21:09:31.610486"], ["username", "mandy"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.671701"], ["email", "bryana@trantow.name"], ["first_name", "Keon"], ["last_name", "Tillman"], ["password_digest", "$2a$10$7osHyyR59QyzVF5Dg77aM.R98Ql9Kp8DFdKljU4qYAXQWQvvoWl7y"], ["updated_at", "2014-12-18 21:09:31.671701"], ["username", "arely_terry"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "first_name", "last_name", "password_digest", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.736001"], ["email", "brock.kuhlman@harber.net"], ["first_name", "Rowena"], ["last_name", "Ryan"], ["password_digest", "$2a$10$n2Ikc8QYiSSFDzcgpzYKhOfDU4fjxB0zpmu2eBqE1x5O8VKK.PIBu"], ["updated_at", "2014-12-18 21:09:31.736001"], ["username", "hailey.deckow"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.743711"], ["distance", 602], ["location", "Leffler Neck"], ["updated_at", "2014-12-18 21:09:31.743711"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.745704"], ["distance", 143], ["location", "Dana Gardens"], ["updated_at", "2014-12-18 21:09:31.745704"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.747442"], ["distance", 247], ["location", "Mayra Mews"], ["updated_at", "2014-12-18 21:09:31.747442"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.748983"], ["distance", 561], ["location", "Hodkiewicz Land"], ["updated_at", "2014-12-18 21:09:31.748983"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.750768"], ["distance", 894], ["location", "Fritsch Shoal"], ["updated_at", "2014-12-18 21:09:31.750768"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.752532"], ["distance", 794], ["location", "McGlynn Grove"], ["updated_at", "2014-12-18 21:09:31.752532"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.754189"], ["distance", 149], ["location", "Trystan Via"], ["updated_at", "2014-12-18 21:09:31.754189"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.755873"], ["distance", 225], ["location", "Jailyn Knolls"], ["updated_at", "2014-12-18 21:09:31.755873"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.757331"], ["distance", 303], ["location", "Axel Viaduct"], ["updated_at", "2014-12-18 21:09:31.757331"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.758907"], ["distance", 421], ["location", "Blanda Groves"], ["updated_at", "2014-12-18 21:09:31.758907"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.760553"], ["distance", 691], ["location", "Johan Turnpike"], ["updated_at", "2014-12-18 21:09:31.760553"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.762222"], ["distance", 143], ["location", "McDermott Summit"], ["updated_at", "2014-12-18 21:09:31.762222"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.763845"], ["distance", 328], ["location", "Lenora Pike"], ["updated_at", "2014-12-18 21:09:31.763845"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.765511"], ["distance", 397], ["location", "Jevon Bridge"], ["updated_at", "2014-12-18 21:09:31.765511"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.767236"], ["distance", 229], ["location", "Dibbert Square"], ["updated_at", "2014-12-18 21:09:31.767236"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.768969"], ["distance", 507], ["location", "Vena Crest"], ["updated_at", "2014-12-18 21:09:31.768969"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.776354"], ["distance", 536], ["location", "Prohaska Plaza"], ["updated_at", "2014-12-18 21:09:31.776354"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.778139"], ["distance", 770], ["location", "Kenny Extensions"], ["updated_at", "2014-12-18 21:09:31.778139"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.779652"], ["distance", 439], ["location", "Julia Streets"], ["updated_at", "2014-12-18 21:09:31.779652"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.781476"], ["distance", 703], ["location", "Graham Stravenue"], ["updated_at", "2014-12-18 21:09:31.781476"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.783170"], ["distance", 807], ["location", "Smitham Manors"], ["updated_at", "2014-12-18 21:09:31.783170"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.784768"], ["distance", 697], ["location", "Spinka Knoll"], ["updated_at", "2014-12-18 21:09:31.784768"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.786422"], ["distance", 528], ["location", "Nolan Plains"], ["updated_at", "2014-12-18 21:09:31.786422"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.788022"], ["distance", 293], ["location", "Kozey River"], ["updated_at", "2014-12-18 21:09:31.788022"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.790018"], ["distance", 729], ["location", "Meaghan Light"], ["updated_at", "2014-12-18 21:09:31.790018"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.792101"], ["distance", 402], ["location", "Samanta Haven"], ["updated_at", "2014-12-18 21:09:31.792101"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.793785"], ["distance", 993], ["location", "Mark Oval"], ["updated_at", "2014-12-18 21:09:31.793785"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.795338"], ["distance", 784], ["location", "Hyman Pass"], ["updated_at", "2014-12-18 21:09:31.795338"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.796839"], ["distance", 402], ["location", "Lowe Burgs"], ["updated_at", "2014-12-18 21:09:31.796839"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "routes" ("created_at", "distance", "location", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.798417"], ["distance", 671], ["location", "Mckenzie Forest"], ["updated_at", "2014-12-18 21:09:31.798417"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.806720"], ["route_id", 7], ["total_distance", 700], ["total_time", 1171781], ["updated_at", "2014-12-18 21:09:31.806720"], ["user_id", 6]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.809138"], ["route_id", 11], ["total_distance", 350], ["total_time", 1558341], ["updated_at", "2014-12-18 21:09:31.809138"], ["user_id", 10]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.810704"], ["route_id", 5], ["total_distance", 900], ["total_time", 1313169], ["updated_at", "2014-12-18 21:09:31.810704"], ["user_id", 3]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.812294"], ["route_id", 11], ["total_distance", 700], ["total_time", 547698], ["updated_at", "2014-12-18 21:09:31.812294"], ["user_id", 4]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.813779"], ["route_id", 17], ["total_distance", 150], ["total_time", 420770], ["updated_at", "2014-12-18 21:09:31.813779"], ["user_id", 9]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.815460"], ["route_id", 11], ["total_distance", 350], ["total_time", 1545825], ["updated_at", "2014-12-18 21:09:31.815460"], ["user_id", 3]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.817025"], ["route_id", 18], ["total_distance", 300], ["total_time", 397290], ["updated_at", "2014-12-18 21:09:31.817025"], ["user_id", 8]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.818572"], ["route_id", 15], ["total_distance", 300], ["total_time", 755088], ["updated_at", "2014-12-18 21:09:31.818572"], ["user_id", 5]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.820178"], ["route_id", 7], ["total_distance", 1000], ["total_time", 774184], ["updated_at", "2014-12-18 21:09:31.820178"], ["user_id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.821809"], ["route_id", 23], ["total_distance", 400], ["total_time", 410055], ["updated_at", "2014-12-18 21:09:31.821809"], ["user_id", 8]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.823420"], ["route_id", 5], ["total_distance", 700], ["total_time", 1551705], ["updated_at", "2014-12-18 21:09:31.823420"], ["user_id", 6]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.824996"], ["route_id", 12], ["total_distance", 600], ["total_time", 1650932], ["updated_at", "2014-12-18 21:09:31.824996"], ["user_id", 9]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.826669"], ["route_id", 29], ["total_distance", 1000], ["total_time", 851526], ["updated_at", "2014-12-18 21:09:31.826669"], ["user_id", 1]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.828273"], ["route_id", 1], ["total_distance", 250], ["total_time", 1699846], ["updated_at", "2014-12-18 21:09:31.828273"], ["user_id", 7]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.829935"], ["route_id", 10], ["total_distance", 150], ["total_time", 544149], ["updated_at", "2014-12-18 21:09:31.829935"], ["user_id", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.831836"], ["route_id", 9], ["total_distance", 800], ["total_time", 1510153], ["updated_at", "2014-12-18 21:09:31.831836"], ["user_id", 3]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.833465"], ["route_id", 14], ["total_distance", 300], ["total_time", 88805], ["updated_at", "2014-12-18 21:09:31.833465"], ["user_id", 9]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.835048"], ["route_id", 21], ["total_distance", 300], ["total_time", 1409668], ["updated_at", "2014-12-18 21:09:31.835048"], ["user_id", 7]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.836687"], ["route_id", 22], ["total_distance", 600], ["total_time", 1578405], ["updated_at", "2014-12-18 21:09:31.836687"], ["user_id", 4]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.838339"], ["route_id", 22], ["total_distance", 250], ["total_time", 947591], ["updated_at", "2014-12-18 21:09:31.838339"], ["user_id", 6]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.840286"], ["route_id", 25], ["total_distance", 150], ["total_time", 338238], ["updated_at", "2014-12-18 21:09:31.840286"], ["user_id", 9]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.841903"], ["route_id", 2], ["total_distance", 300], ["total_time", 382152], ["updated_at", "2014-12-18 21:09:31.841903"], ["user_id", 4]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.843465"], ["route_id", 22], ["total_distance", 300], ["total_time", 566280], ["updated_at", "2014-12-18 21:09:31.843465"], ["user_id", 4]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.845017"], ["route_id", 15], ["total_distance", 300], ["total_time", 520442], ["updated_at", "2014-12-18 21:09:31.845017"], ["user_id", 7]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.846546"], ["route_id", 18], ["total_distance", 500], ["total_time", 224552], ["updated_at", "2014-12-18 21:09:31.846546"], ["user_id", 5]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.848240"], ["route_id", 7], ["total_distance", 150], ["total_time", 1709486], ["updated_at", "2014-12-18 21:09:31.848240"], ["user_id", 2]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.849909"], ["route_id", 18], ["total_distance", 900], ["total_time", 881110], ["updated_at", "2014-12-18 21:09:31.849909"], ["user_id", 9]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.851420"], ["route_id", 21], ["total_distance", 350], ["total_time", 405861], ["updated_at", "2014-12-18 21:09:31.851420"], ["user_id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.853036"], ["route_id", 19], ["total_distance", 400], ["total_time", 1063113], ["updated_at", "2014-12-18 21:09:31.853036"], ["user_id", 3]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.854557"], ["route_id", 28], ["total_distance", 400], ["total_time", 1081574], ["updated_at", "2014-12-18 21:09:31.854557"], ["user_id", 7]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.856307"], ["route_id", 4], ["total_distance", 700], ["total_time", 727521], ["updated_at", "2014-12-18 21:09:31.856307"], ["user_id", 10]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.857830"], ["route_id", 16], ["total_distance", 300], ["total_time", 1284562], ["updated_at", "2014-12-18 21:09:31.857830"], ["user_id", 8]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.859380"], ["route_id", 26], ["total_distance", 300], ["total_time", 235962], ["updated_at", "2014-12-18 21:09:31.859380"], ["user_id", 7]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.860885"], ["route_id", 16], ["total_distance", 100], ["total_time", 1606103], ["updated_at", "2014-12-18 21:09:31.860885"], ["user_id", 10]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.862357"], ["route_id", 22], ["total_distance", 100], ["total_time", 871873], ["updated_at", "2014-12-18 21:09:31.862357"], ["user_id", 7]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.863858"], ["route_id", 22], ["total_distance", 150], ["total_time", 832442], ["updated_at", "2014-12-18 21:09:31.863858"], ["user_id", 3]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.865388"], ["route_id", 2], ["total_distance", 400], ["total_time", 495909], ["updated_at", "2014-12-18 21:09:31.865388"], ["user_id", 4]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.866928"], ["route_id", 10], ["total_distance", 900], ["total_time", 427124], ["updated_at", "2014-12-18 21:09:31.866928"], ["user_id", 6]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.868593"], ["route_id", 5], ["total_distance", 300], ["total_time", 1227637], ["updated_at", "2014-12-18 21:09:31.868593"], ["user_id", 3]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.870106"], ["route_id", 6], ["total_distance", 400], ["total_time", 1721860], ["updated_at", "2014-12-18 21:09:31.870106"], ["user_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.871547"], ["route_id", 28], ["total_distance", 150], ["total_time", 1485050], ["updated_at", "2014-12-18 21:09:31.871547"], ["user_id", 3]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.873118"], ["route_id", 23], ["total_distance", 100], ["total_time", 381604], ["updated_at", "2014-12-18 21:09:31.873118"], ["user_id", 9]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.874646"], ["route_id", 24], ["total_distance", 700], ["total_time", 1300059], ["updated_at", "2014-12-18 21:09:31.874646"], ["user_id", 6]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.876347"], ["route_id", 23], ["total_distance", 400], ["total_time", 875883], ["updated_at", "2014-12-18 21:09:31.876347"], ["user_id", 2]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.878050"], ["route_id", 26], ["total_distance", 300], ["total_time", 1640120], ["updated_at", "2014-12-18 21:09:31.878050"], ["user_id", 2]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.879766"], ["route_id", 6], ["total_distance", 350], ["total_time", 37992], ["updated_at", "2014-12-18 21:09:31.879766"], ["user_id", 10]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.882048"], ["route_id", 30], ["total_distance", 700], ["total_time", 571387], ["updated_at", "2014-12-18 21:09:31.882048"], ["user_id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.883724"], ["route_id", 7], ["total_distance", 400], ["total_time", 1646688], ["updated_at", "2014-12-18 21:09:31.883724"], ["user_id", 2]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.885339"], ["route_id", 7], ["total_distance", 250], ["total_time", 197410], ["updated_at", "2014-12-18 21:09:31.885339"], ["user_id", 8]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "efforts" ("created_at", "route_id", "total_distance", "total_time", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.886957"], ["route_id", 25], ["total_distance", 250], ["total_time", 1261888], ["updated_at", "2014-12-18 21:09:31.886957"], ["user_id", 5]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.892737"], ["distance", 100], ["effort_id", 49], ["time", 43500], ["updated_at", "2014-12-18 21:09:31.892737"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.894321"], ["distance", 100], ["effort_id", 32], ["time", 33104], ["updated_at", "2014-12-18 21:09:31.894321"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.895692"], ["distance", 100], ["effort_id", 43], ["time", 44210], ["updated_at", "2014-12-18 21:09:31.895692"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.897177"], ["distance", 73], ["effort_id", 17], ["time", 41892], ["updated_at", "2014-12-18 21:09:31.897177"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.899030"], ["distance", 100], ["effort_id", 48], ["time", 59100], ["updated_at", "2014-12-18 21:09:31.899030"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.900560"], ["distance", 100], ["effort_id", 39], ["time", 41363], ["updated_at", "2014-12-18 21:09:31.900560"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.901867"], ["distance", 100], ["effort_id", 49], ["time", 67488], ["updated_at", "2014-12-18 21:09:31.901867"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.903341"], ["distance", 100], ["effort_id", 24], ["time", 61770], ["updated_at", "2014-12-18 21:09:31.903341"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.904824"], ["distance", 100], ["effort_id", 39], ["time", 34411], ["updated_at", "2014-12-18 21:09:31.904824"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.906340"], ["distance", 73], ["effort_id", 40], ["time", 58913], ["updated_at", "2014-12-18 21:09:31.906340"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.907792"], ["distance", 100], ["effort_id", 33], ["time", 65590], ["updated_at", "2014-12-18 21:09:31.907792"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.909279"], ["distance", 73], ["effort_id", 36], ["time", 35487], ["updated_at", "2014-12-18 21:09:31.909279"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.910755"], ["distance", 100], ["effort_id", 4], ["time", 70789], ["updated_at", "2014-12-18 21:09:31.910755"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.912043"], ["distance", 100], ["effort_id", 46], ["time", 55803], ["updated_at", "2014-12-18 21:09:31.912043"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.913765"], ["distance", 100], ["effort_id", 3], ["time", 31771], ["updated_at", "2014-12-18 21:09:31.913765"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.915475"], ["distance", 95], ["effort_id", 1], ["time", 64562], ["updated_at", "2014-12-18 21:09:31.915475"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.916830"], ["distance", 100], ["effort_id", 11], ["time", 56437], ["updated_at", "2014-12-18 21:09:31.916830"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.918225"], ["distance", 100], ["effort_id", 23], ["time", 42969], ["updated_at", "2014-12-18 21:09:31.918225"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.919687"], ["distance", 100], ["effort_id", 39], ["time", 52112], ["updated_at", "2014-12-18 21:09:31.919687"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.921089"], ["distance", 100], ["effort_id", 27], ["time", 46450], ["updated_at", "2014-12-18 21:09:31.921089"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.922731"], ["distance", 100], ["effort_id", 34], ["time", 45217], ["updated_at", "2014-12-18 21:09:31.922731"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.924199"], ["distance", 100], ["effort_id", 34], ["time", 51842], ["updated_at", "2014-12-18 21:09:31.924199"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.925633"], ["distance", 100], ["effort_id", 43], ["time", 58341], ["updated_at", "2014-12-18 21:09:31.925633"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.927137"], ["distance", 95], ["effort_id", 7], ["time", 51501], ["updated_at", "2014-12-18 21:09:31.927137"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.928467"], ["distance", 100], ["effort_id", 7], ["time", 59135], ["updated_at", "2014-12-18 21:09:31.928467"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.930022"], ["distance", 100], ["effort_id", 42], ["time", 43505], ["updated_at", "2014-12-18 21:09:31.930022"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.932128"], ["distance", 95], ["effort_id", 15], ["time", 64815], ["updated_at", "2014-12-18 21:09:31.932128"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.933649"], ["distance", 100], ["effort_id", 41], ["time", 51603], ["updated_at", "2014-12-18 21:09:31.933649"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.935015"], ["distance", 100], ["effort_id", 8], ["time", 48339], ["updated_at", "2014-12-18 21:09:31.935015"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.936392"], ["distance", 100], ["effort_id", 11], ["time", 50688], ["updated_at", "2014-12-18 21:09:31.936392"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.937829"], ["distance", 100], ["effort_id", 30], ["time", 46323], ["updated_at", "2014-12-18 21:09:31.937829"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.939205"], ["distance", 100], ["effort_id", 16], ["time", 43140], ["updated_at", "2014-12-18 21:09:31.939205"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.940655"], ["distance", 100], ["effort_id", 48], ["time", 66292], ["updated_at", "2014-12-18 21:09:31.940655"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.942203"], ["distance", 100], ["effort_id", 49], ["time", 45851], ["updated_at", "2014-12-18 21:09:31.942203"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.943766"], ["distance", 73], ["effort_id", 10], ["time", 47377], ["updated_at", "2014-12-18 21:09:31.943766"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.945155"], ["distance", 100], ["effort_id", 47], ["time", 68056], ["updated_at", "2014-12-18 21:09:31.945155"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.946422"], ["distance", 100], ["effort_id", 19], ["time", 44723], ["updated_at", "2014-12-18 21:09:31.946422"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.948130"], ["distance", 100], ["effort_id", 49], ["time", 56149], ["updated_at", "2014-12-18 21:09:31.948130"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.949550"], ["distance", 73], ["effort_id", 26], ["time", 34865], ["updated_at", "2014-12-18 21:09:31.949550"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.951134"], ["distance", 100], ["effort_id", 26], ["time", 31097], ["updated_at", "2014-12-18 21:09:31.951134"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.952671"], ["distance", 100], ["effort_id", 31], ["time", 53776], ["updated_at", "2014-12-18 21:09:31.952671"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.954024"], ["distance", 100], ["effort_id", 30], ["time", 62651], ["updated_at", "2014-12-18 21:09:31.954024"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.955465"], ["distance", 100], ["effort_id", 41], ["time", 53631], ["updated_at", "2014-12-18 21:09:31.955465"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.957017"], ["distance", 100], ["effort_id", 5], ["time", 65843], ["updated_at", "2014-12-18 21:09:31.957017"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.958480"], ["distance", 100], ["effort_id", 30], ["time", 31783], ["updated_at", "2014-12-18 21:09:31.958480"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.959993"], ["distance", 100], ["effort_id", 9], ["time", 42466], ["updated_at", "2014-12-18 21:09:31.959993"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.961346"], ["distance", 100], ["effort_id", 14], ["time", 36682], ["updated_at", "2014-12-18 21:09:31.961346"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.963473"], ["distance", 100], ["effort_id", 2], ["time", 56964], ["updated_at", "2014-12-18 21:09:31.963473"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.965362"], ["distance", 100], ["effort_id", 50], ["time", 44128], ["updated_at", "2014-12-18 21:09:31.965362"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.966924"], ["distance", 73], ["effort_id", 11], ["time", 51261], ["updated_at", "2014-12-18 21:09:31.966924"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.968404"], ["distance", 100], ["effort_id", 27], ["time", 66586], ["updated_at", "2014-12-18 21:09:31.968404"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.969799"], ["distance", 100], ["effort_id", 40], ["time", 68737], ["updated_at", "2014-12-18 21:09:31.969799"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.971297"], ["distance", 100], ["effort_id", 18], ["time", 48345], ["updated_at", "2014-12-18 21:09:31.971297"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.972810"], ["distance", 95], ["effort_id", 47], ["time", 71150], ["updated_at", "2014-12-18 21:09:31.972810"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.974231"], ["distance", 73], ["effort_id", 33], ["time", 59093], ["updated_at", "2014-12-18 21:09:31.974231"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.975696"], ["distance", 100], ["effort_id", 35], ["time", 49785], ["updated_at", "2014-12-18 21:09:31.975696"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.977151"], ["distance", 100], ["effort_id", 5], ["time", 56181], ["updated_at", "2014-12-18 21:09:31.977151"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.978581"], ["distance", 100], ["effort_id", 49], ["time", 63550], ["updated_at", "2014-12-18 21:09:31.978581"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.980063"], ["distance", 73], ["effort_id", 28], ["time", 69095], ["updated_at", "2014-12-18 21:09:31.980063"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.981869"], ["distance", 100], ["effort_id", 38], ["time", 39150], ["updated_at", "2014-12-18 21:09:31.981869"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.983397"], ["distance", 100], ["effort_id", 34], ["time", 37137], ["updated_at", "2014-12-18 21:09:31.983397"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.984747"], ["distance", 100], ["effort_id", 49], ["time", 38338], ["updated_at", "2014-12-18 21:09:31.984747"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.986129"], ["distance", 100], ["effort_id", 25], ["time", 45920], ["updated_at", "2014-12-18 21:09:31.986129"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.987357"], ["distance", 100], ["effort_id", 5], ["time", 57327], ["updated_at", "2014-12-18 21:09:31.987357"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.988660"], ["distance", 100], ["effort_id", 41], ["time", 46126], ["updated_at", "2014-12-18 21:09:31.988660"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.989980"], ["distance", 100], ["effort_id", 32], ["time", 33725], ["updated_at", "2014-12-18 21:09:31.989980"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.991182"], ["distance", 100], ["effort_id", 41], ["time", 52105], ["updated_at", "2014-12-18 21:09:31.991182"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.992486"], ["distance", 100], ["effort_id", 47], ["time", 61833], ["updated_at", "2014-12-18 21:09:31.992486"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.994015"], ["distance", 100], ["effort_id", 29], ["time", 65885], ["updated_at", "2014-12-18 21:09:31.994015"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.995544"], ["distance", 100], ["effort_id", 46], ["time", 34356], ["updated_at", "2014-12-18 21:09:31.995544"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:31.997170"], ["distance", 100], ["effort_id", 2], ["time", 40518], ["updated_at", "2014-12-18 21:09:31.997170"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:31.999101"], ["distance", 100], ["effort_id", 14], ["time", 32273], ["updated_at", "2014-12-18 21:09:31.999101"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.000808"], ["distance", 95], ["effort_id", 21], ["time", 69377], ["updated_at", "2014-12-18 21:09:32.000808"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.002201"], ["distance", 73], ["effort_id", 45], ["time", 59784], ["updated_at", "2014-12-18 21:09:32.002201"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.003850"], ["distance", 95], ["effort_id", 45], ["time", 43794], ["updated_at", "2014-12-18 21:09:32.003850"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.005498"], ["distance", 100], ["effort_id", 38], ["time", 56057], ["updated_at", "2014-12-18 21:09:32.005498"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.007089"], ["distance", 100], ["effort_id", 2], ["time", 64245], ["updated_at", "2014-12-18 21:09:32.007089"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.008553"], ["distance", 100], ["effort_id", 13], ["time", 64166], ["updated_at", "2014-12-18 21:09:32.008553"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.010160"], ["distance", 100], ["effort_id", 34], ["time", 45966], ["updated_at", "2014-12-18 21:09:32.010160"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.011724"], ["distance", 100], ["effort_id", 12], ["time", 44362], ["updated_at", "2014-12-18 21:09:32.011724"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.013221"], ["distance", 95], ["effort_id", 24], ["time", 64021], ["updated_at", "2014-12-18 21:09:32.013221"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.015098"], ["distance", 100], ["effort_id", 15], ["time", 42160], ["updated_at", "2014-12-18 21:09:32.015098"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.016782"], ["distance", 100], ["effort_id", 19], ["time", 38029], ["updated_at", "2014-12-18 21:09:32.016782"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.018574"], ["distance", 95], ["effort_id", 9], ["time", 53179], ["updated_at", "2014-12-18 21:09:32.018574"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.020189"], ["distance", 73], ["effort_id", 47], ["time", 53429], ["updated_at", "2014-12-18 21:09:32.020189"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.021756"], ["distance", 100], ["effort_id", 1], ["time", 44093], ["updated_at", "2014-12-18 21:09:32.021756"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.023336"], ["distance", 100], ["effort_id", 6], ["time", 62098], ["updated_at", "2014-12-18 21:09:32.023336"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.024763"], ["distance", 100], ["effort_id", 27], ["time", 31730], ["updated_at", "2014-12-18 21:09:32.024763"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.026110"], ["distance", 100], ["effort_id", 18], ["time", 60481], ["updated_at", "2014-12-18 21:09:32.026110"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.027438"], ["distance", 95], ["effort_id", 10], ["time", 47997], ["updated_at", "2014-12-18 21:09:32.027438"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.028672"], ["distance", 100], ["effort_id", 14], ["time", 55718], ["updated_at", "2014-12-18 21:09:32.028672"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.030105"], ["distance", 100], ["effort_id", 18], ["time", 35260], ["updated_at", "2014-12-18 21:09:32.030105"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.031505"], ["distance", 100], ["effort_id", 21], ["time", 48355], ["updated_at", "2014-12-18 21:09:32.031505"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.032832"], ["distance", 95], ["effort_id", 36], ["time", 64832], ["updated_at", "2014-12-18 21:09:32.032832"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.034421"], ["distance", 100], ["effort_id", 10], ["time", 61927], ["updated_at", "2014-12-18 21:09:32.034421"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.036031"], ["distance", 100], ["effort_id", 27], ["time", 66907], ["updated_at", "2014-12-18 21:09:32.036031"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.037369"], ["distance", 100], ["effort_id", 32], ["time", 48007], ["updated_at", "2014-12-18 21:09:32.037369"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.038730"], ["distance", 73], ["effort_id", 25], ["time", 55046], ["updated_at", "2014-12-18 21:09:32.038730"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-18 21:09:32.040107"], ["distance", 100], ["effort_id", 17], ["time", 70192], ["updated_at", "2014-12-18 21:09:32.040107"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "splits" ("created_at", "distance", "effort_id", "time", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-18 21:09:32.041463"], ["distance", 100], ["effort_id", 27], ["time", 42930], ["updated_at", "2014-12-18 21:09:32.041463"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35mEffort Load (0.2ms)[0m  SELECT "efforts".* FROM "efforts"  WHERE "efforts"."user_id" = ?  [["user_id", 10]]
+  [1m[36mRoute Load (0.2ms)[0m  [1mSELECT "routes".* FROM "routes" INNER JOIN "efforts" ON "routes"."id" = "efforts"."route_id" WHERE "efforts"."user_id" = ?[0m  [["user_id", 10]]
+  [1m[35mSplit Load (0.3ms)[0m  SELECT "splits".* FROM "splits" INNER JOIN "efforts" ON "splits"."effort_id" = "efforts"."id" WHERE "efforts"."user_id" = ?  [["user_id", 10]]
+  [1m[36mEffort Load (0.2ms)[0m  [1mSELECT  "efforts".* FROM "efforts"  WHERE "efforts"."id" = 34 LIMIT 1[0m
